@@ -13,8 +13,8 @@ messages = [
 
 # Try to send a request to OpenAI's GPT-4 model and get the assistant's reply
 try:
-    # API call to OpenAI for a chat completion
-    response = openai.chat_completions.create(
+    # API call to OpenAI for a chat completion (make sure you're using the correct method)
+    response = openai.ChatCompletion.create(
         model="gpt-4",           # Model being used (e.g., gpt-4)
         messages=messages,       # The chat history
         temperature=0.7          # Temperature to control randomness
@@ -24,11 +24,11 @@ try:
     assistant_message = response['choices'][0]['message']['content']
     st.markdown(f"**Assistant:** {assistant_message}")
 
-except openai.error.AuthenticationError:
+except openai.AuthenticationError:
     st.error("Authentication Error: Please check your OpenAI API key.")
-except openai.error.InvalidRequestError as e:
+except openai.InvalidRequestError as e:
     st.error(f"Invalid Request Error: {e}")
-except openai.error.OpenAIError as e:
+except openai.OpenAIError as e:
     st.error(f"OpenAI API Error: {e}")
 except Exception as e:
     st.error(f"An unexpected error occurred: {e}")
