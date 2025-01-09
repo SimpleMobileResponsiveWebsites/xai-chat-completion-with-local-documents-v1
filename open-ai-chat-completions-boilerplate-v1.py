@@ -57,9 +57,9 @@ if st.button("Submit"):
             assistant_message = response['choices'][0]['message']['content']
             st.markdown(f"**Assistant:** {assistant_message}")
 
-        except openai.AuthenticationError:
+        except openai.error.AuthenticationError:
             st.error("Authentication Error: Please check your OpenAI API key.")
-        except openai.InvalidRequestError as e:
+        except openai.error.InvalidRequestError as e:
             st.error(f"Invalid Request Error: {e}")
         except openai.error.OpenAIError as e:
             st.error(f"OpenAI API Error: {e}")
